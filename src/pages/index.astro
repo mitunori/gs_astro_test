@@ -2,9 +2,10 @@
 import Card from '../components/Card.astro';
 import Layout from '../layouts/Layout.astro';
 
+// 1. 追加する
 import { getCollection } from "astro:content";
 const allPosts = await getCollection("posts");
-console.log(allPosts, 'allPosts');
+// 2. 確認する console.log(allPosts, 'allPosts');
 
 ---
 
@@ -19,10 +20,12 @@ console.log(allPosts, 'allPosts');
 	
 		<div class="blog">
 			<h3>記事の内容</h3>
-			<!--  -->
-			{allPosts.map((data, index) => (
-				<Card test={data}/>
-			))}
+			<!-- 3.allPostsに収納されているデータを表示する -->
+			<div class="card-wrap">
+				{allPosts.map((data) => (
+					<Card test={data}/>
+				))}
+			</div>
 		</div>
 		<!-- 表示する領域と内容をこの箇所に設定します -->
 
@@ -30,6 +33,19 @@ console.log(allPosts, 'allPosts');
 </Layout>
 
 <style>
+	.blog{
+		width: 90%;
+		margin: 0 auto 50px;
+	}
+
+	.card-wrap{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 20px;
+	}
+
+
 	.mv{
 		height: 500px;
 		display: flex;

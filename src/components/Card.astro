@@ -6,11 +6,35 @@ interface Props {
 }
 
 const { test } = Astro.props;
+console.log(test, 'test')
 ---
 
-<div>
-  <p>{test.slug}</p>
-  <p>{test.body}</p>
-  <p>{test.id}</p>
+<div class="card">
+  <a href={`/posts/${test.slug}`}>
+    <p>{test.data.pubDate}</p>
+    <h3>{test.data.title}</h3>
+    <p>{test.body}</p>
+    <p>{test.id}</p>
+  </a>
 </div>
+
+<style>
+  .card{
+    border: 1px solid #000;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  a{
+    text-decoration: none;
+    font-size: 16px;
+    color: #000;
+    transition: all .3s;
+  }
+  a:hover{
+    opacity: .5;
+  }
+</style>
 
